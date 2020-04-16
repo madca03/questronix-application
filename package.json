@@ -1,0 +1,19 @@
+{
+  "name": "questronix-application",
+  "version": "1.0.0",
+  "description": "CRUD Application for Questronix Coding Exam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madca03/questronix-application.git"
+  },
+  "author": "Mark Allen Dela Cruz Agaton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madca03/questronix-application/issues"
+  },
+  "homepage": "https://github.com/madca03/questronix-application#readme"
+}
