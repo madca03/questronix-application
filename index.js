@@ -3,15 +3,17 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const api_router = require('./routes/api');
+const items_router = require('./routes/items');
+const api_items_router = require('./routes/api');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
-app.use('/api', api_router)
+app.use('/', items_router)
+app.use('/api', api_items_router)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
