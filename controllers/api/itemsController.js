@@ -16,7 +16,7 @@ exports.new = (req, res) => {
     response = {};
     response['route'] = 'new article';
     response['method'] = 'POST';
-    res.json(repsonse);
+    res.json(response);
 };
 
 exports.update = (req, res) => {
