@@ -17,3 +17,9 @@ exports.index = (req, res) => {
         res.render('items/index', render_params);
     });
 };
+
+exports.test = (req, res) => {
+    render_params = {};
+    render_params['title'] = "Test";
+    res.render('test', render_params);
+}
