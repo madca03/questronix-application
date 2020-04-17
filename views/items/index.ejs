@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('../partials/stylesheets') %>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Amount</th>
+            <th scope="col" colspan="2">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach( (item) => { %>
+              <tr>
+                  <td class="item-name"><span><%= item.name %></span></td>
+                  <td class="item-qty"><span><%= item.qty %></span></td>
+                  <td class="item-amount"><span><%= item.amount %></span></td>
+                  <td><button type="button" class="btn btn-warning edit" data-item-id="<%= item.id %>">Edit</button></td>
+                  <td><button type="button" class="btn btn-danger delete" data-item-id="<%= item.id %>">Delete</button></td>
+              </tr>
+          <% }) %>
+
+        </tbody>
+      </table>
+    </div>
+
+    <%- include('../partials/bootstrap_js') %>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
