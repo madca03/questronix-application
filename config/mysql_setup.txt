@@ -1,0 +1,5 @@
+CREATE USER 'mark'@'localhost' IDENTIFIED BY 'questronix';
+GRANT ALL PRIVILEGES ON inventory.* TO 'mark'@'localhost';
+CREATE DATABASE inventory;
+USE inventory;
+CREATE TABLE items ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, qty INT NOT NULL, amount FLOAT NOT NULL );
