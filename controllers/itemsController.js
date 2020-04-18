@@ -18,21 +18,8 @@ exports.index = (req, res) => {
     });
 };
 
-exports.test = (req, res, next) => {
-    render_params = {};
-    render_params['title'] = "Test";
-    res.render('test', render_params);
-}
-
-exports.test2 = (req, res, next) => {
-    console.log('ID: ', req.params.id)
-    if (req.params.id === '0')
-        next('route')
-    else
-        next()
-}
-
-exports.test3 = (req, res, next) => {
-    console.log('ID in test3: ', req.params.id);
-    res.end(req.params.id);
+exports.api_list = (req, res) => {
+    render_params = {}
+    render_params['title'] = 'REST API list';
+    res.render('items/api-list', render_params);
 }

@@ -37,10 +37,11 @@ exports.show_api = (req, res) => {
 };
 
 exports.check_name_if_unique = (req, res, next) => {
+    let item_id = req.params.id;
     let name = req.body.name;
 
     let response = {};
-    let sql = `SELECT COUNT(*) AS name_count FROM items WHERE name = '${name}'`;
+    let sql = `SELECT COUNT(*) AS name_count FROM items WHERE name = '${name}' AND id != ${item_id}`;
     mysql.connection.query(sql, (err, results, fields) => {
         if (err != null) {
             response['status'] = 'unsuccessful';

@@ -19,7 +19,7 @@ function add_button_clicked() {
 
 function add_item_to_server(new_item, item_input_tags) {
   $.ajax({
-    url: $(location).attr("origin") + '/api/article',
+    url: $(location).attr("origin") + '/api/item',
     method: 'POST',
     data: new_item,
     dataType: 'json',
@@ -101,7 +101,15 @@ function submit_button_new_item_handler(e) {
     let input_tag = this;
 
     // restore original invalid feedback for client-side validation
-    $(input_tag).siblings("div.invalid-feedback").prop("innerHTML", "Name of item is required");
+    if ($(input_tag).attr('id') === "newItemName") {
+      $(input_tag).siblings("div.invalid-feedback").prop("innerHTML", "Name of item is required.");
+    }
+    else if ($(input_tag).attr('id') === "newItemQty") {
+      $(input_tag).siblings("div.invalid-feedback").prop("innerHTML", "Quantity of item is required.");
+    }
+    else if ($(input_tag).attr('id') === "newItemAmount") {
+      $(input_tag).siblings("div.invalid-feedback").prop("innerHTML", "Amount of item is required");
+    }
 
     if (input_tag.checkValidity() === false) {
       form_valid = false;
@@ -162,19 +170,23 @@ function replace_form_fields_with_updated_static_data(current_item, new_item_fie
         let table_td = this;
         let span_tag = $(table_td).children("span");
         let input_tag = $(table_td).children("input");
+        let invalid_feedback_div = $(table_td).children("div.invalid-feedback");
 
         if ($(table_td).hasClass("item-name")) {
           $(input_tag).remove();
+          $(invalid_feedback_div).remove();
           $(span_tag).prop("innerHTML", new_item_fields['name']);
           $(span_tag).show();
         }
         else if ($(table_td).hasClass("item-qty")) {
           $(input_tag).remove();
+          $(invalid_feedback_div).remove();
           $(span_tag).prop("innerHTML", new_item_fields['qty']);
           $(span_tag).show();
         }
         else if ($(table_td).hasClass("item-amount")) {
           $(input_tag).remove();
+          $(invalid_feedback_div).remove();
           $(span_tag).prop("innerHTML", new_item_fields['amount']);
           $(span_tag).show();
         }
@@ -194,7 +206,7 @@ function delete_button_clicked() {
   });
 
   $.ajax({
-      url: $(location).attr('origin') + `/api/article/${item_id}`,
+      url: $(location).attr('origin') + `/api/item/${item_id}`,
       method: 'DELETE'
     })
     .done((res) => {
@@ -298,7 +310,7 @@ async function update_item(current_item) {
 
   if (form_valid) {
     await $.ajax({
-      url: $(location).attr("origin") +`/api/article/${item_id}`,
+      url: $(location).attr("origin") +`/api/item/${item_id}`,
       method: 'PUT',
       data: new_item,
       dataType: 'json',
@@ -327,7 +339,6 @@ async function update_item(current_item) {
             $(this).append($(new_invalid_feedback_div));
           }
         });
-        console.log($(td_tag));
       }
     });
   }
@@ -336,25 +347,10 @@ async function update_item(current_item) {
 }
 
 async function save_button_clicked() {
-  // restore original invalid feedback for client-side validation
-  let td_tag = $(this).parent("td").first()
-  $(td_tag).siblings().each(function() {
-    if ($(this).hasClass("item-name") || $(this).hasClass("item-qty") || $(this).hasClass("item-amount")) {
-      if ($(this).children("div.original-invalid-feedback").length != 0) {
-        let original_invalid_feedback = $(this).children("div.original-invalid-feedback");
-        
-        $(this).children("div.invalid-feedback").remove();
-        $(original_invalid_feedback).removeClass("original-invalid-feedback").addClass("invalid-feedback");
-        $(original_invalid_feedback).prop("hidden", false);
-      }
-    }
-  })
-
   let res = await update_item(this);
-  console.log(res);
   let new_item_fields = res[0];
   let form_valid = res[1];
-  console.log(new_item_fields, form_valid);
+
   if (form_valid) {
     $("button.edit").each(function() {
       $(this).prop("disabled", false);

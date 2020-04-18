@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('../partials/stylesheets') %>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    
+    <div class="container mt-4">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">REST API</th>
+                <th scope="col">Method</th>
+                <th scope="col">Function</th>
+                <th scope="col">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>/api/items</td>
+                <td>GET</td>
+                <td>Get all items</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <%- include('../partials/bootstrap_js') %>
+  </body>
+</html>
