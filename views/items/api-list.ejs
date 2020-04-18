@@ -7,34 +7,46 @@
   <body>
     <%- include('../partials/navbar') %>
     
-    <div class="container mt-4">
-        <table class="table table-striped">
+    <div class="container-fluid mt-4">
+        <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">REST API</th>
-                <th scope="col">Method</th>
+                <th scope="col">HTTP Method</th>
                 <th scope="col">Function</th>
                 <th scope="col">Example</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>/api/items</td>
+                <td><%= `${hostname}/api/items` %></td>
                 <td>GET</td>
                 <td>Get all items</td>
-                <td>@mdo</td>
+                <td><%= `${hostname}/api/items` %></td>
               </tr>
               <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <td><%= `${hostname}/api/item/:id` %></td>
+                <td>GET</td>
+                <td>Get item given an id</td>
+                <td><%= `${hostname}/api/item/${id}` %></td>
               </tr>
               <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                <td><%= `${hostname}/api/item` %></td>
+                <td>POST</td>
+                <td>Create a new item</td>
+                <td><%= `curl -d "name=sticko&qty=10&amount=12.3" ${hostname}/api/item` %></td>
+              </tr>
+              <tr>
+                <td><%= `${hostname}/api/item/:id` %></td>
+                <td>PUT</td>
+                <td>Update an item given an id</td>
+                <td><%= `curl -d "name=sticko&qty=10&amount=123.3" -X PUT ${hostname}/api/item/56` %></td>
+              </tr>
+              <tr>
+                <td><%= `${hostname}/api/item/:id` %></td>
+                <td>DELETE</td>
+                <td>DELETE an item given an id</td>
+                <td><%= `curl -X DELETE ${hostname}/api/item/56` %></td>
               </tr>
             </tbody>
           </table>

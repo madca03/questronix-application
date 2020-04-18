@@ -19,7 +19,15 @@ exports.index = (req, res) => {
 };
 
 exports.api_list = (req, res) => {
-    render_params = {}
-    render_params['title'] = 'REST API list';
-    res.render('items/api-list', render_params);
+    let sql = 'SELECT id FROM items limit 1';
+    render_params = {};
+
+    mysql.connection.query(sql, (err, results, fields) => {
+        console.log(results);
+        render_params['id'] = results[0]['id'];
+        render_params['title'] = 'REST API list';
+        render_params['hostname'] = req.get('host');
+        res.render('items/api-list', render_params);    
+    });
+
 }
