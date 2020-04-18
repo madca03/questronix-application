@@ -24,7 +24,11 @@ exports.api_list = (req, res) => {
 
     mysql.connection.query(sql, (err, results, fields) => {
         console.log(results);
-        render_params['id'] = results[0]['id'];
+        if (results.length === 0) {
+            render_params['id'] = '1';
+        } else {
+            render_params['id'] = results[0]['id'];
+        }
         render_params['title'] = 'REST API list';
         render_params['hostname'] = req.get('host');
         res.render('items/api-list', render_params);    
