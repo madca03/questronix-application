@@ -1,10 +1,15 @@
 const http = require('http');
 const path = require('path');
+const morgan = require('morgan');
 const express = require('express');
 const app = express();
 
 const items_router = require('./routes/items');
 const api_items_router = require('./routes/api');
+
+// nginx used as reversed proxy
+app.set('trust proxy', 'loopback')
+app.use(morgan('combined'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

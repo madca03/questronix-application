@@ -1,0 +1,10 @@
+{
+	"uid": "questronix",
+	"append": true,
+	"watch": true,
+	"script": "index.js",
+	"sourceDir": "/home/mark/questronix-application",
+	"logFile": "/home/mark/logs/forever.log",
+	"outFile": "/home/mark/logs/output.log",
+	"errFile": "/home/mark/logs/error.log"
+}

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+	"start": "npm run start-nodemon",
+	"start-forever-test2": "forever start ./forever/development_local_user.json",
+	"start-nodemon": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,8 @@
     "mysql2": "^2.1.0"
   },
   "devDependencies": {
+    "forever": "^2.0.0",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.3"
   }
 }
